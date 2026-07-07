@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.time.Year;
 
 import java.math.BigDecimal;
 
@@ -39,6 +40,28 @@ public class ScientistController {
             @RequestParam BigDecimal co2Kt,
             RedirectAttributes redirectAttributes
     ) {
+        int currentYear = Year.now().getValue();
+
+        if (year < 1960 || year > currentYear) {
+            redirectAttributes.addFlashAttribute(
+                    "errorMessage",
+                    "Das Jahr muss zwischen 1960 und "
+                            + currentYear
+                            + " liegen."
+            );
+
+            return "redirect:/scientist";
+        }
+
+        if (co2Kt.compareTo(BigDecimal.ZERO) <= 0) {
+            redirectAttributes.addFlashAttribute(
+                    "errorMessage",
+                    "Der CO₂-Wert muss größer als 0 sein."
+            );
+
+            return "redirect:/scientist";
+        }
+
         Country country = countryRepository
                 .findById(countryId)
                 .orElseThrow();
