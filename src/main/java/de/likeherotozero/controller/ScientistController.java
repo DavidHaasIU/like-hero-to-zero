@@ -43,16 +43,25 @@ public class ScientistController {
                 .findById(countryId)
                 .orElseThrow();
 
-        emissionService.saveEmission(
-                country,
-                year,
-                co2Kt
-        );
+        try {
+            emissionService.saveEmission(
+                    country,
+                    year,
+                    co2Kt
+            );
 
-        redirectAttributes.addFlashAttribute(
-                "successMessage",
-                "CO₂-Datensatz wurde erfolgreich gespeichert."
-        );
+            redirectAttributes.addFlashAttribute(
+                    "successMessage",
+                    "CO₂-Datensatz wurde erfolgreich gespeichert."
+            );
+
+        } catch (IllegalArgumentException exception) {
+
+            redirectAttributes.addFlashAttribute(
+                    "errorMessage",
+                    exception.getMessage()
+            );
+        }
 
         return "redirect:/scientist";
     }

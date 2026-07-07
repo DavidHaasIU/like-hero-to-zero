@@ -13,11 +13,15 @@ public class EmissionService {
 
     private final Co2EmissionRepository co2EmissionRepository;
 
-    public EmissionService(Co2EmissionRepository co2EmissionRepository) {
+    public EmissionService(
+            Co2EmissionRepository co2EmissionRepository
+    ) {
         this.co2EmissionRepository = co2EmissionRepository;
     }
 
-    public Optional<Co2Emission> findLatestEmission(Country country) {
+    public Optional<Co2Emission> findLatestEmission(
+            Country country
+    ) {
         return co2EmissionRepository
                 .findTopByCountryOrderByYearDesc(country);
     }
@@ -27,6 +31,20 @@ public class EmissionService {
             Integer year,
             BigDecimal co2Kt
     ) {
+        boolean alreadyExists =
+                co2EmissionRepository.existsByCountryAndYear(
+                        country,
+                        year
+                );
+
+        if (alreadyExists) {
+            throw new IllegalArgumentException(
+                    "Für " + country.getName()
+                            + " und das Jahr " + year
+                            + " existiert bereits ein Datensatz."
+            );
+        }
+
         Co2Emission emission = new Co2Emission(
                 country,
                 year,

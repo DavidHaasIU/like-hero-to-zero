@@ -59,6 +59,16 @@
 
         </div>
 
+        <div
+                class="result-box error-box"
+                th:if="${errorMessage != null}">
+
+            <strong th:text="${errorMessage}">
+                Fehler beim Speichern des Datensatzes.
+            </strong>
+
+        </div>
+
         <form method="post" th:action="@{/scientist/emissions}">
 
             <div class="field-group">
