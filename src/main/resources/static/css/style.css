@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f6f4;
+    color: #1f2933;
+}
+
+.container {
+    width: min(100% - 40px, 1000px);
+    margin: 0 auto;
+}
+
+.site-header {
+    background-color: #163d2a;
+    color: white;
+    padding: 22px 0;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    color: #d8e8dd;
+}
+
+.hero {
+    padding: 70px 0 35px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: #287a4b;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1 {
+    max-width: 750px;
+    margin: 0;
+    font-size: 44px;
+    line-height: 1.1;
+}
+
+.intro {
+    max-width: 700px;
+    margin-top: 22px;
+    font-size: 19px;
+    line-height: 1.6;
+    color: #52606d;
+}
+
+.card {
+    margin-bottom: 60px;
+    padding: 32px;
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 13px;
+    font-size: 16px;
+    border: 1px solid #b8c2bc;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.result-box {
+    margin-top: 28px;
+    padding: 24px;
+    background-color: #edf7f0;
+    border-left: 5px solid #287a4b;
+    border-radius: 8px;
+}
+
+.result-label,
+.result-year {
+    display: block;
+    color: #52606d;
+}
+
+.result-value {
+    display: block;
+    margin: 10px 0;
+    font-size: 28px;
+    color: #163d2a;
+}
+.form-spacing {
+    margin-top: 22px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    font-size: 16px;
+    border: 1px solid #b8c2bc;
+    border-radius: 8px;
+}
+
+.primary-button {
+    margin-top: 28px;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #287a4b;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    background-color: #1f633d;
+}

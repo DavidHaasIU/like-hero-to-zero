@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Like Hero To Zero</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="/">LIKE HERO TO ZERO</a>
+        <span class="tagline">CO₂-Daten weltweit</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <p class="eyebrow">Nachhaltigkeitsprojekt</p>
+
+        <h1>Weltweite CO₂-Emissionen verständlich dargestellt</h1>
+
+        <p class="intro">
+            Wähle ein Land aus und informiere dich über den aktuellsten
+            im Datensatz verfügbaren CO₂-Ausstoß.
+        </p>
+    </section>
+
+    <section class="card">
+
+        <form method="get" action="/">
+            <div class="field-group">
+                <label for="countryId">Land auswählen</label>
+
+                <select
+                        id="countryId"
+                        name="countryId"
+                        onchange="this.form.submit()">
+
+                    <option value="">
+                        Bitte Land auswählen
+                    </option>
+
+                    <option
+                            th:each="country : ${countries}"
+                            th:value="${country.id}"
+                            th:text="${country.name}"
+                            th:selected="${selectedCountry != null and selectedCountry.id == country.id}">
+                    </option>
+
+                </select>
+            </div>
+        </form>
+
+        <div class="result-box"
+             th:if="${latestEmission != null}">
+
+    <span class="result-label">
+        Aktuellster verfügbarer Datensatz für
+        <strong th:text="${selectedCountry.name}"></strong>
+    </span>
+
+            <strong class="result-value">
+                <span th:text="${latestEmission.co2Kt}"></span>
+                kt CO₂
+            </strong>
+
+            <span class="result-year">
+        Datenjahr:
+        <strong th:text="${latestEmission.year}"></strong>
+    </span>
+
+        </div>
+
+        <div class="result-box"
+             th:if="${latestEmission == null}">
+
+    <span class="result-label">
+        Aktuellster verfügbarer Datensatz
+    </span>
+
+            <strong class="result-value">
+                Noch kein Land ausgewählt
+            </strong>
+
+            <span class="result-year">
+        Wähle oben ein Land aus.
+    </span>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>
