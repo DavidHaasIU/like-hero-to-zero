@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Anmeldung | Like Hero To Zero</title>
+
+    <link
+            rel="stylesheet"
+            th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<main class="container">
+
+    <section class="hero">
+
+        <p class="eyebrow">
+            WISSENSCHAFTLER-BEREICH
+        </p>
+
+        <h1>
+            Anmeldung
+        </h1>
+
+        <p>
+            Melde dich an, um neue CO₂-Forschungsdaten zu erfassen.
+        </p>
+
+    </section>
+
+    <section class="card">
+
+        <div
+                class="error-box"
+                th:if="${param.error}">
+
+            <strong>
+                Benutzername oder Passwort ist falsch.
+            </strong>
+
+        </div>
+
+        <div
+                class="result-box"
+                th:if="${param.logout}">
+
+            <strong>
+                Du wurdest erfolgreich abgemeldet.
+            </strong>
+
+        </div>
+
+        <form
+                method="post"
+                th:action="@{/login}">
+
+            <div class="field-group">
+
+                <label for="username">
+                    Benutzername
+                </label>
+
+                <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
+                        autofocus>
+
+            </div>
+
+            <div class="field-group form-spacing">
+
+                <label for="password">
+                    Passwort
+                </label>
+
+                <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required>
+
+            </div>
+
+            <button
+                    class="primary-button"
+                    type="submit">
+
+                Anmelden
+
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/",
+                                "/login",
                                 "/css/**"
                         ).permitAll()
                         .requestMatchers("/scientist/**")
@@ -50,6 +51,7 @@ public class SecurityConfig {
                         .authenticated()
                 )
                 .formLogin(form -> form
+                        .loginPage("/login")
                         .defaultSuccessUrl("/scientist", true)
                         .permitAll()
                 )
