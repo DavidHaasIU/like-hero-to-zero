@@ -1,0 +1,31 @@
+@startuml
+
+title Like Hero To Zero - Datenbankstruktur
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+entity country {
+    * id : BIGINT <<PK>>
+    --
+    name : VARCHAR(100) <<UNIQUE, NOT NULL>>
+    country_code : VARCHAR(3) <<UNIQUE, NOT NULL>>
+}
+
+entity co2_emission {
+    * id : BIGINT <<PK>>
+    --
+    country_id : BIGINT <<FK, NOT NULL>>
+    emission_year : INTEGER <<NOT NULL>>
+    co2_kt : DECIMAL(15,2) <<NOT NULL>>
+}
+
+country ||--o{ co2_emission : "1 : n"
+
+note right of co2_emission
+  UNIQUE:
+  country_id + emission_year
+end note
+
+@enduml

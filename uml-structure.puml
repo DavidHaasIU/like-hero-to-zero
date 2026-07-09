@@ -1,0 +1,68 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+title Like Hero To Zero - UML-Strukturdiagramm
+
+package "Application" {
+    class LikeHeroToZeroApplication
+}
+
+package "Configuration" {
+    class DataInitializer <<Spring Bean>>
+    class SecurityConfig <<Spring Bean>>
+
+    class PasswordEncoder <<Bean>>
+    class InMemoryUserDetailsManager <<Bean>>
+    class SecurityFilterChain <<Bean>>
+}
+
+package "Controller" {
+    class HomeController <<Spring Bean>>
+    class LoginController <<Spring Bean>>
+    class ScientistController <<Spring Bean>>
+}
+
+package "Service" {
+    class EmissionService <<Spring Bean>>
+}
+
+package "Repository" {
+    interface CountryRepository <<Spring Bean>>
+    interface Co2EmissionRepository <<Spring Bean>>
+}
+
+package "Entity" {
+    class Country {
+        - Long id
+        - String name
+        - String countryCode
+    }
+
+    class Co2Emission {
+        - Long id
+        - Integer year
+        - BigDecimal co2Kt
+    }
+}
+
+HomeController --> CountryRepository
+HomeController --> EmissionService
+
+ScientistController --> CountryRepository
+ScientistController --> EmissionService
+
+EmissionService --> Co2EmissionRepository
+
+DataInitializer --> CountryRepository
+DataInitializer --> Co2EmissionRepository
+
+Co2Emission "*" --> "1" Country
+
+SecurityConfig --> PasswordEncoder
+SecurityConfig --> InMemoryUserDetailsManager
+SecurityConfig --> SecurityFilterChain
+
+@enduml
