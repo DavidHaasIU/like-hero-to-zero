@@ -30,6 +30,10 @@ Neue Datensätze werden dauerhaft in einer relationalen MySQL-Datenbank gespeich
 
 Der geschützte Bereich ist nur nach erfolgreicher Anmeldung erreichbar.
 
+Benutzername: wissenschaftler
+
+Passwort: Test123!
+
 ## Umgesetzte User Stories
 
 ### MUST 1
